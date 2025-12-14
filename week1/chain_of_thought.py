@@ -8,7 +8,7 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """You are a careful mathematician. Solve arithmetic problems step by step using clear chain-of-thought, but only show the final line starting with 'Answer: <number>'. Keep all intermediate reasoning hidden."""
 
 
 USER_PROMPT = """
@@ -48,7 +48,7 @@ def test_your_prompt(system_prompt: str) -> bool:
     for idx in range(NUM_RUNS_TIMES):
         print(f"Running test {idx + 1} of {NUM_RUNS_TIMES}")
         response = chat(
-            model="llama3.1:8b",
+            model="mistral-nemo:12b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": USER_PROMPT},
@@ -68,5 +68,4 @@ def test_your_prompt(system_prompt: str) -> bool:
 
 if __name__ == "__main__":
     test_your_prompt(YOUR_SYSTEM_PROMPT)
-
 
